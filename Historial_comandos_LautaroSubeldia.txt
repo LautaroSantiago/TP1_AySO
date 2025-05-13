@@ -1,0 +1,585 @@
+vagrant status
+vagtant status
+ls -l
+pwd
+ls -la
+pwd
+cat .bash_history 
+mkdir eje_1/dir1
+man mkdir
+sudo apt update
+sudo apt install -y manpages-es
+locale
+sudo localectl set-locale LANG=es_AR.UTF-8
+su vagrant
+vagrant
+locate
+status
+w
+who
+su vagrant
+locale
+man man
+ls -l
+man mkdir
+mkdir -p eje_1/dir1
+ls -l
+ls -l eje_1/
+mkdir -p eje_2/{dir1,dir2}/hijos
+tree eje_2
+sudo apt install tree
+tree eje_2
+mkdir eje_3/{dir1/hijo,dir2} -p
+tree eje_3
+mkdir eje_4{papa,mama}/hijos_{1..10} -p
+tree eje_4
+mkdir eje_4{papa,mama}/hijos_{1..10} -p
+tree eje_4
+mkdir eje_4/{papa,mama}/hijo{1..10}
+mkdir eje_4/{papa,mama}/hijo{1..10} -p
+tree eje_4
+mkdir eje_5/{papa/bastardo,mama}/hijo{1..10} -p
+tree eje_5
+mkdir eje_5b/{papa,mama}/{bastardo,hijo{1..10}} -p
+tree eje_5b
+mkdir eje_5c/{{papa,mama}/hijo{1..10},papa/bastardo} -p
+tree eje_5c
+mkdir eje_6/{{dir1,dir2}/iguales,dir1/distinto} -p
+tree eje_6
+car << FIN >> script2.sh
+mkdir -p eje_7/{{papa,mama}/perros_{1..10},papa/gato}
+echo
+tree eje_7
+FIN
+
+cat << FIN >> script2.sh
+mkdir -p eje_7/{{papa,mama}/perros_{1..10},papa/gato}
+echo
+tree eje_7
+FIN
+
+ls -l
+bash script2.sh 
+cat /proc/cpuinfo
+cat /proc/cpuinfo | greep model
+cat /proc/cpuinfo | grep model
+cat /proc/cpuinfo | grep model name
+man grep
+cat /proc/cpuinfo | grep "model name"
+grep "model name" /proc/cpuinfo
+grep "model name" /proc/cpuinfo | tail -n1
+tail -n2 script.sh
+tail -n2 script2.sh
+grep "model name" /proc/cpuinfo | tail -n1
+man awk
+echo "col1 col2 col3" | awk '{print}'
+echo "col1 col2 col3" | awk '{print $2}'
+echo "col1 col2 col3" | awk '{print "columna " $2}'
+echo "col1 col2 col3" | awk '{print "columna " $2 " otra " $3}'
+echo "col1:col2 col3" | awk '{print $2}'
+echo "col1:col2:col3" | awk -F ':' '{print $2}'
+echo "col1:col2 col3" | awk -F ':' '{print $2}'
+echo "col1:col2 col3" | awk -F ':' '{print $2}' | awk '{print $1}'
+echo "col1:col2 col3" | awk -F ':' '{print $2}' | awk '{print $2}'
+ip a
+ip a | grep inet
+ip a | grep inet | grep 56
+ip a | grep inet | grep 56 | ip a | grep inet | grep 56 | awk '{print $2}'
+ip a | grep inet | grep 56 | ip a | grep inet | grep 56 | awk '{print $2}' | awk -F '/' print {print $2}
+ip a | grep inet | grep 56 | awk '{print $2}' | awk -F '/' print {print $1}
+ip a | grep inet | grep 56 | awk '{print $2}' | awk -F '/' {print $1}
+ip a | grep inet | grep 56 | awk '{print $2}' | awk -F '/' '{print $1}'
+ip a | grep inet | grep 56 | awk '{print $2}' | awk -F '/' '{print "ping -c1" $1}'
+ip a | grep inet | grep 56 | awk '{print $2}' | awk -F '/' '{print "ping -c1 " $1}'
+ping -c1 192.168.56.2
+ip a | grep inet | grep 56 | awk '{print $2}' | awk -F '/' '{print "ping -c1 " $1}' | bash
+ip a | grep inet | grep 56 | awk '{print $2}' | awk -F '/' '{print "ping -c1 " $1}' | /bin/bash
+whoami
+echo "soy: $(whoami)"
+greo $(whoami) /etc/passwd
+grep $(whoami) /etc/passwd
+grep -E 'root | $(whoami)' /etc/passwd
+grep -E 'root|$(whoami)' /etc/passwd
+echo '$HOME'
+echo "$HOME"
+grep -E "root|$(whoami)" /etc/passwd
+echo "root|$(whoami)"
+echo 'root|$(whoami)'
+grep -E "root|$(whoami)" /etc/passwd
+useradd usuario1
+sudo useradd usuario1
+grep -E "root|$(whoami)|usuario" /etc/passwd
+sudo su
+sudo useradd -m -s /bin/bash -c "creamos usuario" usuario2
+grep -E "root|$(whoami)|usuario" /etc/passwd
+ls -l
+ls -l home
+grep -E "root|$(whoami)|usuario" /etc/passwd
+ls -l /home
+sudo passwd usuario2
+su - usuario2
+su usuario2
+groupadd alumnos
+sudo groupadd alumnos
+sudo useradd -m -s /bin/bash -c "creamos usuario" -G alumnos usuario3
+id usuario3
+id
+sudo usermod -a -G alumnos vagrant
+id
+ls -l
+ls -l /etc/group
+cat /etc/group
+grep -E "root|$(whoami)|usuario" /etc/passwd/etc/shadow
+grep -E "root|$(whoami)|usuario" /etc/passwd /etc/shadow
+sudo grep -E "root|$(whoami)|usuario" /etc/passwd /etc/shadow
+sudo grep usuario /etc/shadow
+sudo grep usuario2 /etc/shadow
+sudo grep usuario2 /etc/shadow | awk -F ':' '{print $2}'
+sudo useradd -m -s /bin/bash -p '$y$j9T$A2HerY3Kw04mC1s0dDztK0$Aj2V.8LPc9mZDLAYdgARIbU3RD77TpOvOhtS83WYbMD'usuario4
+sudo useradd -m -s /bin/bash -p '$y$j9T$A2HerY3Kw04mC1s0dDztK0$Aj2V.8LPc9mZDLAYdgARIbU3RD77TpOvOhtS83WYbMD' usuario4
+sudo grep usuario[2,4] /etc/shadow | awk -F ':' '{print $2}'
+su usuario4
+sudo useradd -m -s /bin/bash "$(sudo grep usuario2 /etc/shadow | awk -F ':' '{print $2}')" usuario5
+sudo useradd -m -s /bin/bash -p "$(sudo grep usuario2 /etc/shadow | awk -F ':' '{print $2}')" usuario5
+su usuario5
+git clone https://github.com/upszot/UTN-FRA_SO_Examenes.git
+cd
+cd UTN-FRA_SO_Examenes/20230521/
+ls -l
+cat readme
+cat README.md
+cat rec/PuntoG/rec_Parcial1_PuntoG
+cat README.md
+cat rec/PuntoG/time_log_PuntoG
+cat README.md
+scriptreplay --timing=rec/PuntoG/time_log_PuntoG rec/PuntoG/rec_Parcial1_PuntoG
+ls -l
+pwd
+ls -l
+/$HOME
+ls -l
+poweroff
+sudo poweroff
+su vagrant
+ls -l
+pwd
+ls -l
+vagrantoff
+poweroff
+sudo poweroff
+cd /tmp/
+mkdir borrame1/{dir1,dir2} -p
+echo "algo1" > borrame1/dir1/arch1
+echo "algo2" > borrame1/dir2/arch2
+tree borrame1/
+cd borrame1/
+ll
+chmod 000 dir1
+ll
+poweroff
+ls -lR
+ls -l
+ls -la
+ls 
+ls -l
+pwd
+ls -la
+pwd
+ls -ls
+ls -la
+cat .bash_history
+apropos
+apropos awk
+man man
+ls -l
+ls
+ls -l eje_4
+ls -l
+rm eje_1 -rf
+ls -l
+rm eje_2 -rf
+rm eje_3 -rf
+rm eje_4 -rf
+rm eje_5 -rf
+rm eje_6 -rf
+rm eje_7 -rf
+ls -l
+rm eje_4mama -rf
+rm eje_4papa -rf
+rm eje_5b -rf
+rm eje_5c -rf
+ls -l
+mkdir practica
+ls -l
+practica
+rm practica -rf
+ls -l
+mkdir -p 
+mkdir practica -p
+practica
+ls -l
+practica
+pwd
+/home/vagrant/practica/
+ls -l
+/home/vagrant/practica/
+mkdir hola
+ls -l
+rm hola -rf
+ls -l
+rm practica -rf
+ls -l
+mkdir eje_1/dir1
+rm eje_1/dir1 -rf
+ls -l
+ls -la
+mkdir eje_1/dir1
+ls -l
+mkdir eje_1/dir1
+mkdir -p eje1/dir1
+ls -l
+tree eje1/dir1/
+mkdir -p ejercicios
+ls -l
+su power off -f
+poweroff
+pwd
+ls -l
+tree eje1
+ls -l
+mkdir -p carpeta/{directorio, ejemp}/aaaa
+tree carpeta/\{directorio\,/
+mkdir -p el_ejemplo/{uno,dos}/algo
+tree el_ejemplo/
+mkdir -p una_carpeta/dir/dir2
+tree una_carpeta/
+mkdir -p la_CARP/dir/{ALGO, nada}/dir2
+tree la_CARP/
+ls -l
+rm nada}/ -rf
+ls -l
+rm ejemp} -rf
+ls l
+ls -l
+rm la_CARP -rf
+rm el_ejemplo -rf
+ls -l
+rm ejercios -rf
+ls -l
+rm eje1 -rf
+ls -la
+ls -l
+rm ejercicios -rf
+ls -l
+rm carpeta -rf
+ls -l
+tree una_carpeta/
+mkdir -p eje_0/{dir1,dir2}
+tree eje_0/
+mkdir -p eje_1/{dir1,dir2/meme}
+tree eje_1
+mkdir -p ajam/{uno,dos,tres/{ave,vaca}}
+tree ajam/
+mkdir -p ojom/{tres,uno,dos/{ave,vaca}}
+tree ojom/
+mkdir -p ejem/{b,c,a/{zave,vaca}}
+tree eje
+tree ejem
+mkdir -p abuelos/{madre/hija,padre/{hijo/{nieto/nieta},hija}}/bebe
+tree abuelos
+mkdir -p AAbuelos/{{madre/hija,padre/{hijo/{nieto,nieta},hija}}}/bebe
+tree AAbuelos
+mkdir -p AAbuee/{madre/hija,padre/{hijo/{nieto,nieta},hija}}/bebe
+tree AAbue
+tree AAbuee
+mkdir -p AA/{madre/hija,padre/{hijo/{nieto,nieta},hija}}
+tree AA
+mkdir -p familia/{madre/hija,padre}
+tree familia
+mkdir -p familia2/{madre,padre/hijo{1..5}}
+tree familia2
+mkdir -p unafamilia/{madre,padre}/{hijo{1..4},madre/hija}
+tree unafamilia
+mkdir -p flia/{{papa,mama}/hijo{1..3},mama/bastardo}
+tree flia
+tree unafamilia
+mkdir -p flia/{{papa,mama}/hijo{1..3},mama/bastardo}
+tree flia
+ls -l
+rm ojom -rf
+ls -l
+rm AA -rf
+ls -l
+rm AAbuelos -rf
+ls -l
+rm -rf AAbuee
+ls -l
+rm -rf abuelos
+ls -l
+rm -rf ajam
+ls -l
+rm -rf eje_0
+rm -rf eje_1
+rm -rf familia
+rm -rf familia2
+rm -rf flia
+ls -l
+rm -rf una_carpeta
+rm -rf unafamilia
+ls -l
+rm -rf ejem
+ls -l
+mkdir -p familia/{{mama,papa}/hijo{1..5},papa/hijo}
+tree familia/
+mkdir -p la_carpeta/{{carpeta{1..5}/subcarpeta{1..4},carpeta3/carpeta_oculta}
+tree la_carpeta
+mkdir -p una_carpeta/{carpeta{1..5}/subcarpeta{1..4},carpeta3/carpeta_oculta}
+tree una_carpeta
+mkdir -p eje_6/{{dir1,dir2}/iguales,dir2/distinto}
+tree eje_6
+tree una_carpeta
+mkdir -p es_la_carpeta/{carpeta{1..5}/subcarpeta{1..4},carpeta3/carpeta_oculta, carpeta4/None}
+tree es_la_carpeta/
+mkdir -p es_la_carpeta/carpeta{1..5}/subcarpeta{1..4},carpeta3/carpeta_oculta, carpeta4/None}
+tree es_la_carpeta/
+re es_la_carpeta -rf
+rm es_la_carpeta -rf
+ls -l
+mkdir -p es_la_carpeta/carpeta{1..5}/subcarpeta{1..4},carpeta3/carpeta_oculta, carpeta4/None}
+tree es_la_carpeta/
+rm es_la_carpeta -rf
+ls -l
+rm -rf carpeta4
+ls -l
+mkdir -p es_la_carpeta/{carpeta{1..5}/subcarpeta{1..4},carpeta3/carpeta_oculta}carpeta4/None}
+tree es_la_carpeta/
+rm es_la_carpeta -rf
+ls -l
+mkdir -p main1/{second{2..4}/three{5..6},second3/four}
+tree main1/
+cat <<FIN>> script_mkdir_tree.sh
+echo
+mkdir -p un_main/{second{2..4}/three{5..6},second3/four}
+echo
+tree un_main
+FIN
+
+bash script_mkdir_tree.sh
+bash script2.sh
+grep "model name" /proc/cpuinfo | tail -n1
+cat /proc/cpuinfo
+cat /proc/cpuinfo | grep model
+cat /proc/cpuinfo | grep "model name"
+cat /proc/cpuinfo | grep "model name" tail -n1
+cat /proc/cpuinfo | grep "model name" tail
+cat /proc/cpuinfo | grep "model name"
+cat /proc/cpuinfo
+grep "model name" /proc/cpuinfo
+grep "model name" /proc/cpuinfo | tail -n1
+tail -n2 script2.sh 
+echo "col1  col2    col3" | awk '{print}'
+echo "col1  col2    col3" | awk '{print $3}'
+echo "col1  col2    col3" | awk '{print "la tercer columna" $3}'
+echo "col1  col2    col3" | awk '{print "la tercer columna " $3}'
+echo "col1  col2    col3" | awk '{print "la tercer columna " $3 " otra " $1}'
+echo "col1  col2:col3" | awk -F ':' '{print "la columna " $2}'
+echo "col1:col2:col3" | awk -F ':' '{print "la columna " $2}'
+echo "col1  col2:col3" | awk -F ':' '{print "la columna " $2}'
+echo "col1  col2:col3" | awk -F ':' '{print $2}'
+echo "col1  col2:col3" | awk -F ':' '{print $1}'
+echo "col1  col2:col3" | awk -F ':' '{print $1}' | awk '{print $2}'
+echo "col1  col2:col3" | awk -F ':' '{print $1}' | awk '{print $1}'
+ip a
+ip a | grep 192.
+ip a | grep 192. | awk {print $1 $2}
+ip a | grep 192. | awk '{print $1 $2´}'
+ip a | grep 192. | awk '{print $1 $2}'
+ip a | grep 192. | awk '{print $1 " " $2}'
+ip a | grep 192. | awk '{print $1 " " $2}' | awk -F '/' '{print $1}'
+ip a
+ip a | grep 192. | awk '{print $1 " " $2}' | awk -F '/' '{print $1}'
+echo "$HOME"
+echo "$whoami"
+echo "$(whoami)"
+ip a
+ip a | grep MULTICAST
+ip a | grep MULTICAST | head -n1 
+ip a | grep MULTICAST | head -n1 | awk '{print $2}'
+ip a | grep MULTICAST | head -n1 | awk '{print $2}'| awk -F ':' '{print $1}'
+cat /proc/cpuinfo
+grep "bogomips" /proc/cpuinfo
+grep "bogomips" /proc/cpuinfo | tail -n1
+grep "bogomips" /proc/cpuinfo | tail -n1 | awk '{print $3}'
+/proc/cpuinfo
+cat /proc/cpuinfo
+grep "bugs" /proc/cpuinfo
+grep "bugs" /proc/cpuinfo | tail -n1
+grep "bugs" /proc/cpuinfo | tail -n1 | awk -F ':' print{$2}
+grep "bugs" /proc/cpuinfo | tail -n1 | awk -F ':' 'print{$2}'
+grep "bugs" /proc/cpuinfo | tail -n1 | awk -F ':' 'print{$1}'
+grep "bugs" /proc/cpuinfo | tail -n1 | awk -F ':' '{print$2}'
+grep "bugs" /proc/cpuinfo | tail -n1 | awk -F ':' '{print $2}'
+grep "bugs" /proc/cpuinfo | tail -n1 | awk -F ':' '{print $2}' | awk '{print $3}'
+cat <<FIN>> unoo.sh
+echo
+grep "bugs" /proc/cpuinfo | tail -n1 | awk -F ':' '{print $2}' | awk '{print $3}'
+FIN
+
+bash unoo.sh
+grep "bugs" /proc/cpuinfo | tail -n1 | awk -F ':' '{print $2}' | awk '{print $3}'
+ls -l
+bash script_mkdir_tree.sh 
+echo "$HOME"
+echo 'root|$(whoami)'
+echo "root|$(whoami)"
+grep -E "root|$(whoami)" /etc/passwd/
+man 5 passwd
+man man
+grep "bugs" /proc/cpuinfo | tail -n1 | awk -F ':' '{print $2}' | awk '{print $3}'
+cat /proc/cpuinfo
+grep microcode /proc/cpuinfo
+grep microcode -1n /proc/cpuinfo
+grep microcode tail -1n /proc/cpuinfo
+grep microcode /proc/cpuinfo
+grep microcode /proc/cpuinfo | tail -n1
+grep microcode /proc/cpuinfo | tail -n1 | awk -F ':' '{print $2}'
+grep microcode /proc/cpuinfo | tail -n1 | awk -F ':' '{print "este es el microcode "$2}'
+cat /proc/meminfo
+/proc/
+ls -l
+whatis passwd
+whatis id
+id whatis
+whatis id
+ls -la
+pwd
+mkdir ejemplooo
+ls -la
+rm ejemplooo -rf
+ls -l
+poweroff
+su poweroff
+ls -l
+echo "$(grep microcode /proc/cpuinfo | tail -n1 | awk -F ':' '{print "este es el microcode "$2}')"
+grep microcode /proc/cpuinfo | tail -n1 | awk -F ':' '{print "este es el microcode "$2}'
+grep $(whoami) /etc/passwd/
+grep $(whoami) /etc/passwd
+grep -E 'root|$(whoami)' /etc/passwd
+echo 'root|$(whoami)'
+grep -E "root|$(whoami)" /etc/passwd
+users
+useradd un_usuario
+sudo useradd un_usuario
+grep -E "root|$(whoami) |usuario" /etc/passwd
+sudo useradd -m -s /bin/bash -c "coment" user_
+ls -l
+sudo useradd -m -s /bin/bash -c "ok user" usuariohechobien
+grep -E "root|$(whoami)|usuario" /etc/passwd
+ls -l /home/
+sudo passwd usuariohechobien 
+su - usuariohechobien 
+sudo groupadd elgrupo
+sudo useradd -m -s /bin/bash -c "ok user" -G elgrupo otrousuario
+id otrousuario 
+ls -l /etc/group
+cat /etc/group
+grep -E "root|$(whoami)|usuario" /etc/passwd /etc/shadow
+sudo grep -E "root|$(whoami)|usuario" /etc/passwd /etc/shadow
+sudo grep usuario /etc/shadow
+sudo grep usuariohechobien /etc/shadow
+sudo grep usuariohechobien /etc/shadow | awk -F ':' '{print $2}'
+sudo grep usuariohechobien /etc/shadow | awk -F ':' '{print $2}' | awk -F´'/' '{print $1}'
+sudo grep usuariohechobien /etc/shadow | awk -F ':' '{print $2}' | awk -F´'/' '{print $2}'
+sudo grep usuariohechobien /etc/shadow | awk -F ':' '{print $2}' | awk -F´'/' '{print $1}'
+sudo grep usuariohechobien /etc/shadow | awk -F ':' '{print $2}'
+sudo useradd -m -s /bin/bash -p '$y$j9T$3GdtzBUJwG2wt6vGdTfTu1$RSd1tqZskMAeY.uxW2FHLydrIGf6lz4iao8hdmbnIl' -G elgrupo otrousuario99
+poweroff sudo useradd -m -s /bin/bash -p '$y$j9T$3GdtzBUJwG2wt6vGdTfTu1$RSd1tqZskMAeY.uxW2FHLydrIGf6lz4iao8hdmbnIl' -G elgrupo otrousuario99
+poweroff
+sudo poweroff
+ssh-keygen -t ed25519
+cat $HOME/.ssh/*.pub
+cd
+mkdir repogit
+ls -l
+cd
+mkdir repogit
+ls -l
+su mkdir repogit
+pwd
+mkdir repogit
+cd repogit
+git clone git@github.com:LautaroSantiago/TP1_AySO.git
+cd TP1_AySO/
+pwd
+ls -l
+cat /etc/os-release
+man grep
+grep HOME_URL /etc/os-release 
+grep home_url /etc/os-release 
+grep -i Home_url /etc/os-release 
+whoami
+echo "Usuario=$(whoami)" > datos_usuario.txt
+git add.
+git config --global user.email "subeldialautarosantiago@gmail.com"
+git config --global user.name "LautaroSantiago"
+git commit -m "ADD: agregado 1er ejercicio sobre datos_usuario.txt"
+datos_usuario.txt README.md
+git add.
+git add .
+git config --global user.email "subeldialautarosantiago@gmail.com"
+git config --global user.name "LautaroSantiago"
+man grep
+grep HOME_URL /etc/os-release 
+grep home_url /etc/os-release 
+grep -i Home_url /etc/os-release 
+whoami
+echo "Usuario=$(whoami)" > datos_usuario.txt
+git add .
+git config --global user.email "subeldialautarosantiago@gmail.com"
+git config --global user.name "LautaroSantiago"
+git commit -m "ADD: agregado 1er ejercicio sobre datos_usuario.txt"
+git push
+[200~grep "model name" /proc/cpuinfo | head -n1 >> datos_usuario.txt
+grep "model name" /proc/cpuinfo | head -n1 >> datos_usuario.txt
+git add .
+git config --global user.email "subeldialautarosantiago@gmail.com"
+git config --global user.name "LautaroSantiago"
+git commit -m "feat: Añadiendo información de CPU"
+git push
+cat <<EOF >> README.md
+Alumno: Lautaro Subeldia
+División: 318 Turno: Noche
+EOF
+
+git add .
+git config --global user.email "subeldialautarosantiago@gmail.com"
+git config --global user.name "LautaroSantiago"
+git commit -m "ADD: Añadiendo Readme y datos de usuario"
+git add README.md datos_usuarios.txt
+git
+git add .
+git config --global user.email "subeldialautarosantiago@gmail.com"
+git config --global user.name "LautaroSantiago"
+git add README.md datos_usuarios.txt
+git add .cat <<EOF >> README.md
+Alumno: Lautaro Subeldia
+División: 318 Turno: Noche
+EOF
+
+git add .
+git config --global user.email "subeldialautarosantiago@gmail.com"
+git config --global user.name "LautaroSantiago"
+git add README.md datos_usuarios.txt
+ls -l TP1_AySO
+ls TP1_AySO
+cat <<EOF>> README.md
+Alumno: Lautaro Subeldia
+Division: 328 Turno: Noche
+EOF
+
+git add .
+git config --global user.email "subeldialautarosantiago@gmail.com"
+git config --global user.name "LautaroSantiago"
+git commit -m "ADD: Añadiendo Readme y datos de usuario"
+git push
+history -a
